@@ -1,0 +1,9 @@
+--comands
+myvenv\Scripts\activate
+python manage.py makemigrations bolao
+python manage.py migrate bolao
+python manage.py runserver
+
+--sites
+https://docs.djangoproject.com/en/dev/topics/auth/customizing/
+https://django-portuguese.readthedocs.io/en/1.0/topics/auth.html#auth-profiles

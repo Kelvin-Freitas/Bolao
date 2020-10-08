@@ -8,7 +8,7 @@ class Partida(models.Model):
     title = models.CharField(max_length=200)
     timeCasa = models.CharField(max_length=30)
     timeVisitante = models.CharField(max_length=30)
-    partidaRealizada = models.BooleanField()
+    partidaRealizada = models.BooleanField(default=False)
     dataPartida = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
@@ -40,6 +40,6 @@ class Apostas(models.Model):
     def __str__(self):
         return "Aposta em: " + self.aposta_vencedor + "com placar " + self.aposta_placar_casa + " x " + self.aposta_placar_vistante
 
-class UserProfile(models.Model):
+class Apostador(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     credito = models.FloatField(default=10.00)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, unique=True)
