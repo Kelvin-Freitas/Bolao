@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body{
+    background-color: #414245;
+}
+
 .navbar-menu{
     background-image: linear-gradient(270deg,#ff7400,#ff7b0d);
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.1);
@@ -13,6 +17,7 @@
     font: inherit;
     font-size: 24px;
     text-decoration: none;
+    margin-right: 6px;
 }
 
 .titulo:hover{
@@ -35,10 +40,11 @@
 .container{
     margin: 0;
     padding: 0;
+    background-color: #414245;
+    max-width: 100%;
 }
 
 .barra-principal{
-    max-width: 100%;
     padding: 18px 0;
     background-color: #fff;
     box-shadow: 0 2px 0 0 rgba(0,0,0,.12); 
@@ -46,6 +52,7 @@
     font-family: robotoslab-bold;
     font-size: 20px;
     text-align: center;
+    justify-content: center;
 }
 
 .barra-principal .barra-principal-user{
@@ -56,11 +63,12 @@
     color: #e3672a;
 }
 
-.partidas{
+.listagem_partidas{
     padding-top: 60px;
     padding-bottom: 60px;
     margin: 0 auto;
     max-width: 123.75rem;
+    color: #fff;
 }
 
 .row.small-collapse > .column, .row.small-collapse > .columns {
@@ -75,4 +83,91 @@
 }
 .large-20 {
     width: 83.33333%;
+}
+
+.partidas{
+    padding: 70px 0 60px;
+}
+
+.partidas-content h4 {
+	color: #ffffff;
+	font-weight: 500;
+	margin-bottom: 25px;
+}
+
+.partidas-content .mc-table {
+	margin-bottom: 10px;
+}
+
+.partidas-content .mc-table table {
+	width: 100%;
+}
+
+.partidas-content .mc-table table tr {
+	background: rgba(21, 22, 24, 0.9);
+	margin-bottom: 10px;
+}
+
+.partidas-content .mc-table table tr td {
+	padding: 20px 0;
+	width: 800px;
+}
+
+.partidas-content .mc-table table tr td img {
+	height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 3px;
+    margin-left: 5px;
+}
+
+.partidas-content .mc-table table tr td h6 {
+	color: #ffffff;
+	display: inline-block;
+}
+
+.partidas-content .mc-table table tr td.left-team {
+	padding-left: 40px;
+}
+
+.partidas-content .mc-table table tr td.left-team img {
+	float: left;
+	margin-right: 10px;
+}
+
+.partidas-content .mc-table table tr td.left-team h6 {
+	overflow: hidden;
+	line-height: 30px;
+}
+
+.partidas-content .mc-table table tr td.right-team {
+	text-align: right;
+	padding-right: 40px;
+}
+
+.partidas-content .mc-table table tr td.right-team img {
+	float: right;
+	margin-left: 10px;
+}
+
+.partidas-content .mc-table table tr td.right-team h6 {
+	float: right;
+	line-height: 30px;
+}
+
+.partidas-content .mc-table table tr td.mt-content {
+	width: 150px;
+	text-align: center;
+}
+
+.partidas-content .mc-table table tr td.mt-content .mc-op {
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.partidas-content .mc-table table tr td.mt-content h4 {
+	color: #ffffff;
+	font-weight: 700;
+	margin-top: 14px;
+	margin-bottom: 12px;
 }

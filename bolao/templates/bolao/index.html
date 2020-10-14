@@ -1,7 +1,8 @@
 {% load static %}
 <html lang="pt-br">
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
+        <meta name="description" content="Bolao">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Bolão LK</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,7 +24,7 @@
               </ul>
         </nav>
         
-        <div class="container">
+      <div class="container">
             <div class="row barra-principal">
               <div class="col barra-principal-user">
                 Nome Usuário
@@ -35,17 +36,44 @@
                 Qtd Apostas
               </div>
             </div>
-        </div>
-        <div class="row partidas">
+        <div class="row listagem_partidas">
           <div class="small-22 small-offset-1 large-20 large-offset-2 xxlarge-14 xxlarge-offset-5 column">
-              <div class="row full-width small-collapse">
-                PARTIDAS
-              </div>
-              <div class="row full-width small-collapse">
-                Listagem de partidas
+              <div class="row">
+                <section class="partidas set-bg">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-xl-10">
+                        <div class="partidas-content">
+                          <h4>Próximas Partidas</h4>
+                          <div class="mc-table">
+                            <table>
+                              <tbody>
+                                  <tr>
+                                      <td class="left-team">
+                                          <img src="" alt="">
+                                          <h6>Time Casa</h6>
+                                      </td>
+                                      <td class="mt-content">
+                                          <div class="mc-op">dia mês ano</div>
+                                          <h4>VS</h4>
+                                      </td>
+                                      <td class="right-team">
+                                          <img src="" alt="">
+                                          <h6>Time Visitante</h6>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
           </div>
         </div>
+      </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
