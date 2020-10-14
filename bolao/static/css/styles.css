@@ -91,29 +91,29 @@ body{
 
 .partidas-content h4 {
 	color: #ffffff;
-	font-weight: 500;
+	font-weight: bold;
 	margin-bottom: 25px;
 }
 
-.partidas-content .mc-table {
-	margin-bottom: 10px;
+.partidas-content .tabela-partida {
+    margin-bottom: 10px;
 }
 
-.partidas-content .mc-table table {
+.partidas-content .tabela-partida table {
 	width: 100%;
 }
 
-.partidas-content .mc-table table tr {
-	background: rgba(21, 22, 24, 0.9);
+.partidas-content .tabela-partida table tr {
+	background: #fff;
 	margin-bottom: 10px;
 }
 
-.partidas-content .mc-table table tr td {
-	padding: 20px 0;
-	width: 800px;
+.partidas-content .tabela-partida table tr td {
+    padding: 20px 0;
+    width: 1000px;
 }
 
-.partidas-content .mc-table table tr td img {
+.partidas-content .tabela-partida table tr td img {
 	height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -121,52 +121,53 @@ body{
     margin-left: 5px;
 }
 
-.partidas-content .mc-table table tr td h6 {
-	color: #ffffff;
+.partidas-content .tabela-partida table tr td h6 {
+    color: #222;
+    font-weight: bold;
 	display: inline-block;
 }
 
-.partidas-content .mc-table table tr td.left-team {
+.partidas-content .tabela-partida table tr td.time-casa {
 	padding-left: 40px;
 }
 
-.partidas-content .mc-table table tr td.left-team img {
+.partidas-content .tabela-partida table tr td.time-casa img {
 	float: left;
 	margin-right: 10px;
 }
 
-.partidas-content .mc-table table tr td.left-team h6 {
+.partidas-content .tabela-partida table tr td.time-casa h6 {
 	overflow: hidden;
 	line-height: 30px;
 }
 
-.partidas-content .mc-table table tr td.right-team {
+.partidas-content .tabela-partida table tr td.time-visitante {
 	text-align: right;
 	padding-right: 40px;
 }
 
-.partidas-content .mc-table table tr td.right-team img {
+.partidas-content .tabela-partida table tr td.time-visitante img {
 	float: right;
 	margin-left: 10px;
 }
 
-.partidas-content .mc-table table tr td.right-team h6 {
+.partidas-content .tabela-partida table tr td.time-visitante h6 {
 	float: right;
 	line-height: 30px;
 }
 
-.partidas-content .mc-table table tr td.mt-content {
+.partidas-content .tabela-partida table tr td.versus {
 	width: 150px;
 	text-align: center;
 }
 
-.partidas-content .mc-table table tr td.mt-content .mc-op {
+.partidas-content .tabela-partida table tr td.versus .data-partida {
 	font-size: 14px;
-	color: #ffffff;
+	color: #222;;
 }
 
-.partidas-content .mc-table table tr td.mt-content h4 {
-	color: #ffffff;
+.partidas-content .tabela-partida table tr td.versus h4 {
+	color: #222;
 	font-weight: 700;
 	margin-top: 14px;
 	margin-bottom: 12px;
