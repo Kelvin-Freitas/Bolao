@@ -1,5 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 # Create your views here.
-def index(request):
-    return render(request, 'bolao/index.html', {})
+@login_required
+def dashboard(request):
+    return render(request, 'bolao/dashboard.html', {})
