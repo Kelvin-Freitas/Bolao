@@ -173,6 +173,10 @@ body{
 	margin-bottom: 12px;
 }
 
+.tr-partidas{
+    border-bottom: 3px solid #222;
+}
+
 .aposta{
     display: flex;
     justify-content: center;
@@ -187,4 +191,9 @@ body{
 .aposta input{
     margin-left: 8px;
     width: 40px;
+}
+
+.alinhar{
+    display: flex;
+    justify-content: space-between;
 }

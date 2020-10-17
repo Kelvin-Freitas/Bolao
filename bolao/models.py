@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 class Partida(models.Model):
     title = models.CharField(max_length=200)
     timeCasa = models.CharField(max_length=30)
+    iconTimeCasa = models.CharField(max_length=300, null=True)
     timeVisitante = models.CharField(max_length=30)
+    iconTimeVisitante = models.CharField(max_length=300, null=True)
     partidaRealizada = models.BooleanField(default=False)
     dataPartida = models.DateTimeField(blank=True, null=True)
 
@@ -43,3 +45,5 @@ class Apostas(models.Model):
 class Apostador(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     credito = models.FloatField(default=10.00)
+    def get_creditos():
+        return self.credito
