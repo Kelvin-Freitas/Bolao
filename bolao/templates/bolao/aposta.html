@@ -35,10 +35,14 @@
                 {{ user.get_username }}
               </div>
               <div class="col-6 barra-principal-credito">
-                R$ {{ user.apostador }}
+                R$ {{ user.profile.credito }}
               </div>
               <div class="col barra-principal-apostas">
-                Qtd Apostas
+                {% if user.profile.apostou %} 
+                  Você já apostou nessa rodada!
+                {% else %}
+                  Você ainda não apostou nessa rodada!
+                {% endif %}
               </div>
             </div>
 
@@ -53,7 +57,8 @@
                           <div class="tabela-partida">
                             <table>
                               <tbody class="aposta">
-                                <form action="">
+                                <form action="/apostar" method="POST">
+                                  {% csrf_token %}
                                   <tr class="tr-partidas">
                                       <td class="time-casa">
                                         <div class="alinhar">
@@ -64,6 +69,7 @@
                                             <div>
                                                 <label for="placar-casa">Placar</label>
                                                 <input type="text" class="form-control" name="placar-casa" id="placar-casa" />
+                                                <input type="hidden" value="{{ partida.timeCasa }}" name="time-casa" id="time-casa" />
                                             </div>
                                         </div>
                                       </td>
@@ -82,6 +88,7 @@
                                             <div>
                                                 <label for="placar-visitante">Placar</label>
                                                 <input type="text" class="form-control" name="placar-visitante" id="placar-visitante" />
+                                                <input type="hidden" value="{{ partida.timeVisitante }}" name="time-visitante" id="time-visitante" />
                                             </div>
                                             <div>
                                                 <img src="{{ partida.iconTimeVisitante }}" alt="{{ partida.timeVisitante }}" width=”50” height=”50”/>

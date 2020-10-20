@@ -35,10 +35,14 @@
                 {{ user.get_username }}
               </div>
               <div class="col-6 barra-principal-credito">
-                R$ {{ user.apostador }}
+                R$ {{ user.profile.credito }}
               </div>
               <div class="col barra-principal-apostas">
-                Qtd Apostas
+                {% if user.profile.apostou %} 
+                  Você já apostou nessa rodada!
+                {% else %}
+                  Você ainda não apostou nessa rodada!
+                {% endif %}
               </div>
             </div>
 
@@ -49,7 +53,7 @@
                   <div class="container">
                     <div class="row">
                         <div class="partidas-content">
-                          <h4>Próximas Partidas</h4>
+                          <h4>Próximas Partidas, {{ rodada }}</h4>
                           <div class="tabela-partida">
                             <table>
                               <tbody>
