@@ -77,7 +77,7 @@
                                           <div class="data-partida">{{ partida.dataPartida }}</div>
                                           <h4>VS</h4>
                                           <div class="data-partida">
-                                            <input type="hidden" id="{{ partida.pk }}"/>
+                                            <input type="hidden" name="partidaID" id="partidaID" value="{{ partida.id }}"/>
                                             <button type="submit" class="btn btn-success" >
                                               Confirmar
                                             </button>

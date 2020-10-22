@@ -22,18 +22,20 @@ def apostar(request):
         data['placar-visitante'] = request.POST.get('placar-visitante')
         data['time-casa'] = request.POST.get('time-casa')
         data['time-visitante'] = request.POST.get('time-visitante')
+        data['partidaID'] = request.POST.get('partidaID')
         if(data['placar-casa'] > data['placar-visitante']):
             data['time-vencedor'] = data['time-casa']
         elif(data['placar-visitante'] > data['placar-casa']):
             data['time-vencedor'] = data['time-visitante']
         else:
             data['time-vencedor'] = "EMPATE"
-        print(data)
+        partida = Partida.objects.get(id=data['partidaID'])
         aposta = Apostas()
         aposta.usuario = request.user
         aposta.aposta_placar_casa = data['placar-casa']
         aposta.aposta_placar_vistante = data['placar-visitante']
         aposta.aposta_vencedor = data['time-vencedor']
+        aposta.partida = partida
         aposta.save()
         aposta.atualizar(request.user.id)
     return redirect('/')
