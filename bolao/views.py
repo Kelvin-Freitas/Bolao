@@ -1,18 +1,25 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
 from .models import Partida, Apostas, Rodada
 
 # Create your views here.
 @login_required
 def dashboard(request):
     partidas = Partida.objects.filter(partidaRealizada=False)
-    rodada = Rodada.objects.filter(permitirApostas=True)
+    idRodada = partidas[0].rodada.id
+    rodada = Rodada.objects.get(id=idRodada)
     return render(request, 'bolao/dashboard.html', {'partidas': partidas, 'rodada': rodada})
 
 @login_required
 def aposta(request, pk):
     partida = get_object_or_404(Partida, pk=pk)
     return render(request, 'bolao/aposta.html', {'partida': partida})
+
+@login_required
+def ranking(request):
+    users = User.objects.all()
+    return render(request, 'bolao/ranking.html', {'users': users})
 
 @login_required
 def apostar(request):

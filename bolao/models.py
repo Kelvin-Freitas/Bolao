@@ -24,7 +24,7 @@ class Rodada(models.Model):
         return str(self.rodada)
 
 class Partida(models.Model):
-    id = models.AutoField(primary_key=True, unique=True)
+    id = models.AutoField(primary_key=True)
     rodada = models.ForeignKey(Rodada, on_delete=models.CASCADE,null=True)
     title = models.CharField(max_length=200)
     timeCasa = models.CharField(max_length=30)
@@ -47,7 +47,7 @@ class Resultado(models.Model):
     placarCasa = models.IntegerField() 
     placarVisitante = models.IntegerField()
     vencedorPartida = models.CharField(max_length=30)
-    partida = models.OneToOneField(Partida, on_delete=models.SET_NULL, null=True)
+    partida = models.ForeignKey(Partida, on_delete=models.CASCADE)
 
     def publish(self):
         self.save()
@@ -63,7 +63,7 @@ class Apostas(models.Model):
     aposta_placar_casa = models.IntegerField()
     aposta_placar_vistante = models.IntegerField()
     aposta_vencedor = models.CharField(max_length=30)
-    partida = models.OneToOneField(Partida, on_delete=models.SET_NULL, null=True)
+    partida = models.ForeignKey(Partida, on_delete=models.CASCADE)
     
 
     def atualizar(self,userId):
@@ -98,22 +98,45 @@ def save_user_profile(sender, instance, **kwargs):
 
 @receiver(signals.post_save, sender=Resultado) 
 def create_resultado(sender, instance, created, **kwargs):
-    apostas = Apostas.objects.filter(partida=Resultado.partida)
-    apostasPlacar = apostas.objects.filter(aposta_placar_casa=Resultado.placarCasa,aposta_placar_visitante=placarVisitante)
-    partida = Resultado.partida
+    partida = Partida.objects.get(id=instance.partida.id)
     partida.partidaRealizada = True
-    if(apostasPlacar.count()==1):
-        usuario = apostasPlacar.usuario
-        usuario.credito = usuario.credito + partida.premiacao
-    elif(apostasPlacar.count()>1):
+    apostas = Apostas.objects.filter(partida=instance.partida.id,aposta_placar_casa=instance.placarCasa,aposta_placar_vistante=instance.placarVisitante)
+    if(apostas.count()==1):
+        for aposta in apostas:
+            usuario = User.objects.get(id=aposta.usuario.id)
+            usuario.profile.credito = usuario.profile.credito + partida.premiacao
+            usuario.profile.apostou = False
+            usuario.save()
+    elif(apostas.count() > 1):
         premio = partida.premiacao
-        premio = premio/apostasPlacar.count()
-        for aposta in apostasPlacar:
-            usuario = aposta.usuario
-            usuario.credito = premio
-            
-    
-
-@receiver(signals.post_save, sender=Rodada) 
-def create_resultado(sender, instance, created, **kwargs):
-    print("Save method is called")
+        premio = premio / apostas.count()
+        for aposta in apostas:
+            usuario = User.objects.get(id=aposta.usuario.id)
+            usuario.profile.credito = usuario.profile.credito + premio
+            usuario.profile.apostou = False
+            usuario.save()
+    else:
+        apostas = Apostas.objects.filter(partida=instance.partida.id,aposta_vencedor=instance.vencedorPartida)
+        if(apostas.count()==1):
+            for aposta in apostas:
+                usuario = User.objects.get(id=aposta.usuario.id)
+                usuario.profile.credito = usuario.profile.credito + partida.premiacao
+                usuario.profile.apostou = False
+                usuario.save()
+        elif(apostas.count() > 1):
+            premio = partida.premiacao
+            premio = premio / apostas.count()
+            for aposta in apostas:
+                usuario = User.objects.get(id=aposta.usuario.id)
+                usuario.profile.credito = usuario.profile.credito + premio
+                usuario.profile.apostou = False
+                usuario.save()
+        else:
+            apostas = Apostas.objects.filter(partida=instance.partida.id)
+            for aposta in apostas:
+                usuario = User.objects.get(id=aposta.usuario.id)
+                usuario.profile.credito = usuario.profile.credito + aposta.valor_aposta
+                usuario.profile.apostou = False
+                usuario.save()
+    partida.premiacaoDistribuida = True
+    partida.save()

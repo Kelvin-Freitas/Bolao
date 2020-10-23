@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="description" content="Bolao">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Bolão LK - Aposta</title>
+        <title>Bolão LK - Ranking</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
       </head>
@@ -16,7 +16,7 @@
                   <a class="nav-link" href="{% url 'dashboard' %}">Início<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" hhref="{% url 'ranking' %}">Ranking</a>
+                  <a class="nav-link" href="{% url 'ranking' %}">Ranking</a>
                 </li>
                 {% if user.is_authenticated %}
                   <li class="nav-item">
@@ -50,51 +50,22 @@
                   <div class="container">
                     <div class="row">
                         <div class="partidas-content">
-                          <h4>Informe o placar para concluir</h4>
+                          <h4>Ranking de Usuários</h4>
                           <div class="tabela-partida">
                             <table>
-                              <tbody class="aposta">
-                                <form action="/apostar" method="POST">
-                                  {% csrf_token %}
+                              <tbody>
+                                {% for user in users %}
                                   <tr class="tr-partidas">
                                       <td class="time-casa">
-                                        <div class="alinhar">
-                                            <div>
-                                                <img src="{{ partida.iconTimeCasa }}" alt="{{ partida.timeCasa }}" width=”50” height=”50”/>
-                                                <h6>{{ partida.timeCasa }}</h6>
-                                            </div>
-                                            <div>
-                                                <label for="placar-casa">Placar</label>
-                                                <input type="text" class="form-control" name="placar-casa" id="placar-casa" />
-                                                <input type="hidden" value="{{ partida.timeCasa }}" name="time-casa" id="time-casa" />
-                                            </div>
-                                        </div>
+                                          <h3>{{user.username}}</h3>
+                                          <h3>R${{user.profile.creditos}}</h3>
                                       </td>
                                       <td class="versus">
-                                          <div class="data-partida">{{ partida.dataPartida }}</div>
-                                          <h4>VS</h4>
-                                          <div class="data-partida">
-                                            <input type="hidden" name="partidaID" id="partidaID" value="{{ partida.id }}"/>
-                                            <button type="submit" class="btn btn-success" >
-                                              Confirmar
-                                            </button>
-                                          </div>
                                       </td>
                                       <td class="time-visitante">
-                                        <div class="alinhar">
-                                            <div>
-                                                <label for="placar-visitante">Placar</label>
-                                                <input type="text" class="form-control" name="placar-visitante" id="placar-visitante" />
-                                                <input type="hidden" value="{{ partida.timeVisitante }}" name="time-visitante" id="time-visitante" />
-                                            </div>
-                                            <div>
-                                                <img src="{{ partida.iconTimeVisitante }}" alt="{{ partida.timeVisitante }}" width=”50” height=”50”/>
-                                                <h6>{{ partida.timeVisitante }}</h6>
-                                            </div>
-                                        </div>
                                       </td>
                                   </tr>
-                                </form>
+                                {% endfor %}
                               </tbody>
                             </table>
                           </div>
