@@ -65,13 +65,14 @@
                                       <td class="time-casa">
                                         <div class="alinhar">
                                             <div>
-                                                <img src="{{ partida.iconTimeCasa }}" alt="{{ partida.timeCasa }}" width=”50” height=”50”/>
-                                                <h6>{{ partida.timeCasa }}</h6>
+                                                <img src="{{ partida.timeCasa.brasao }}" alt="{{ partida.timeCasa.nome }}" width=”50” height=”50”/>
+                                                <h6>{{ partida.timeCasa.nome }}</h6>
                                             </div>
                                             <div>
                                                 <label for="placar-casa">Placar</label>
                                                 <input type="text" class="form-control" name="placar-casa" id="placar-casa" />
-                                                <input type="hidden" value="{{ partida.timeCasa }}" name="time-casa" id="time-casa" />
+                                                <input type="hidden" value="{{ partida.timeCasa.nome }}" name="time-casa" id="time-casa" />
+                                                <input type="hidden" value="{{ partida.timeCasa.id }}" name="casa-id" id="casa-id" />
                                             </div>
                                         </div>
                                       </td>
@@ -90,11 +91,12 @@
                                             <div>
                                                 <label for="placar-visitante">Placar</label>
                                                 <input type="text" class="form-control" name="placar-visitante" id="placar-visitante" />
-                                                <input type="hidden" value="{{ partida.timeVisitante }}" name="time-visitante" id="time-visitante" />
+                                                <input type="hidden" value="{{ partida.timeVisitante.nome }}" name="time-visitante" id="time-visitante" />
+                                                <input type="hidden" value="{{ partida.timeVisitante.id }}" name="visitante-id" id="visitante-id" />
                                             </div>
                                             <div>
-                                                <img src="{{ partida.iconTimeVisitante }}" alt="{{ partida.timeVisitante }}" width=”50” height=”50”/>
-                                                <h6>{{ partida.timeVisitante }}</h6>
+                                                <img src="{{ partida.timeVisitante.brasao }}" alt="{{ partida.timeVisitante.nome }}" width=”50” height=”50”/>
+                                                <h6>{{ partida.timeVisitante.nome }}</h6>
                                             </div>
                                         </div>
                                       </td>

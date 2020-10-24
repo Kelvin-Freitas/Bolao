@@ -28,14 +28,12 @@ class Rodada(models.Model):
 class Partida(models.Model):
     id = models.AutoField(primary_key=True)
     rodada = models.ForeignKey(Rodada, on_delete=models.CASCADE,null=True)
+    timeCasa = models.ForeignKey(Time, on_delete=models.CASCADE,null=False, related_name='partida_timecasa')
+    timeVisitante = models.ForeignKey(Time, on_delete=models.CASCADE,null=False, related_name='partida_timevisitante')
     title = models.CharField(max_length=200)
-    timeCasa = models.CharField(max_length=30)
-    iconTimeCasa = models.CharField(max_length=300, null=True)
-    timeVisitante = models.CharField(max_length=30)
-    iconTimeVisitante = models.CharField(max_length=300, null=True)
-    partidaRealizada = models.BooleanField(default=False)
     dataPartida = models.DateTimeField(blank=True, null=True)
     premiacao = models.FloatField(default=0.00)
+    partidaRealizada = models.BooleanField(default=False)
     premiacaoDistribuida = models.BooleanField(default=False)
 
     def publish(self):
@@ -46,16 +44,16 @@ class Partida(models.Model):
 
 class Resultado(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
+    partida = models.ForeignKey(Partida, on_delete=models.CASCADE)
+    vencedorPartida = models.ForeignKey(Time, on_delete=models.CASCADE,null=True)
     placarCasa = models.IntegerField() 
     placarVisitante = models.IntegerField()
-    vencedorPartida = models.CharField(max_length=30)
-    partida = models.ForeignKey(Partida, on_delete=models.CASCADE)
 
     def publish(self):
         self.save()
 
     def __str__(self):
-        return self.partida.timeCasa + ' ' + str(self.placarCasa) + ' x ' + str(self.placarVisitante) + ' ' + self.partida.timeVisitante
+        return self.partida.timeCasa.nome + ' ' + str(self.placarCasa) + ' x ' + str(self.placarVisitante) + ' ' + self.partida.timeVisitante.nome
 
 class Apostas(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
@@ -64,7 +62,7 @@ class Apostas(models.Model):
     valor_aposta = models.FloatField(default=5.00)
     aposta_placar_casa = models.IntegerField()
     aposta_placar_vistante = models.IntegerField()
-    aposta_vencedor = models.CharField(max_length=30)
+    aposta_vencedor = models.ForeignKey(Time, on_delete=models.CASCADE,null=True)
     partida = models.ForeignKey(Partida, on_delete=models.CASCADE)
     
 
@@ -78,7 +76,7 @@ class Apostas(models.Model):
         partida.save()
 
     def __str__(self):
-        return "Aposta em: " + str(self.aposta_vencedor) + " com placar " + str(self.aposta_placar_casa) + " x " + str(self.aposta_placar_vistante)
+        return "Apostou em: " + str(self.aposta_vencedor.nome) + " com placar: " + str(self.aposta_placar_casa) + " x " + str(self.aposta_placar_vistante)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

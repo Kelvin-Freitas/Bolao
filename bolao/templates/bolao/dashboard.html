@@ -64,8 +64,8 @@
                                   {% if user.profile.apostou %}
                                     <tr class="tr-partidas">
                                       <td class="time-casa">
-                                          <img src="{{ partida.iconTimeCasa }}" alt="{{ partida.timeCasa }}" width=”50” height=”50”/>
-                                          <h6>{{ partida.timeCasa }}</h6>
+                                          <img src="{{ partida.timeCasa.brasao }}" alt="{{ partida.timeCasa.nome }}" width=”50” height=”50”/>
+                                          <h6>{{ partida.timeCasa.nome }}</h6>
                                       </td>
                                       <td class="versus">
                                           <div class="data-partida">{{ partida.dataPartida }}</div>
@@ -80,15 +80,15 @@
                                           </div>
                                       </td>
                                       <td class="time-visitante">
-                                          <img src="{{ partida.iconTimeVisitante }}" alt="{{ partida.timeVisitante }}" width=”50” height=”50”/>
-                                          <h6>{{ partida.timeVisitante }}</h6>
+                                          <img src="{{ partida.timeVisitante.brasao }}" alt="{{ partida.timeVisitante.nome }}" width=”50” height=”50”/>
+                                          <h6>{{ partida.timeVisitante.nome }}</h6>
                                       </td>
                                     </tr>
                                   {% else %}
                                     <tr class="tr-partidas">
                                         <td class="time-casa">
-                                            <img src="{{ partida.iconTimeCasa }}" alt="{{ partida.timeCasa }}" width=”50” height=”50”/>
-                                            <h6>{{ partida.timeCasa }}</h6>
+                                            <img src="{{ partida.timeCasa.brasao }}" alt="{{ partida.timeCasa.nome }}" width=”50” height=”50”/>
+                                            <h6>{{ partida.timeCasa.nome }}</h6>
                                         </td>
                                         <td class="versus">
                                             <div class="data-partida">{{ partida.dataPartida }}</div>
@@ -103,8 +103,8 @@
                                             </div>
                                         </td>
                                         <td class="time-visitante">
-                                            <img src="{{ partida.iconTimeVisitante }}" alt="{{ partida.timeVisitante }}" width=”50” height=”50”/>
-                                            <h6>{{ partida.timeVisitante }}</h6>
+                                            <img src="{{ partida.timeVisitante.brasao }}" alt="{{ partida.timeVisitante.nome }}" width=”50” height=”50”/>
+                                            <h6>{{ partida.timeVisitante.nome }}</h6>
                                         </td>
                                     </tr>
                                   {% endif %}
