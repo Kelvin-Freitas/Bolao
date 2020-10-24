@@ -1,4 +1,5 @@
-/bolao/__pycache__
-/bolao/migrations/
-/mysite/__pycache__
-/myvenv
+*.pyc
+*~
+__pycache__
+myvenv
+db.sqlite3
