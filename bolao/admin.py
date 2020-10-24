@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Partida,Resultado,Apostas,Rodada
+from .models import Partida,Resultado,Apostas,Rodada,Time
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 
@@ -22,3 +22,4 @@ admin.site.register(Partida)
 admin.site.register(Resultado)
 admin.site.register(Apostas)
 admin.site.register(Rodada)
+admin.site.register(Time)

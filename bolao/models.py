@@ -8,9 +8,11 @@ from django.db.models import signals
 # Create your models here.
 
 class Time(models.Model):
-	id = models.AutoField(primary_key=True, unique=True)
-	nome = models.CharField("nome", max_length=255)
-	brasao = models.CharField("brasao", max_length=255)
+    id = models.AutoField(primary_key=True, unique=True)
+    nome = models.CharField("nome", max_length=255)
+    brasao = models.CharField("brasao", max_length=255)
+    def __str__(self):
+        return self.nome
 
 class Rodada(models.Model):
     id = models.AutoField(primary_key=True, unique=True)

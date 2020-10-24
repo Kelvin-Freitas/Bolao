@@ -20,7 +20,7 @@ def aposta(request, pk):
 
 @login_required
 def ranking(request):
-    users = User.objects.all()
+    users =  User.objects.order_by('-profile__credito')
     return render(request, 'bolao/ranking.html', {'users': users})
 
 @login_required
