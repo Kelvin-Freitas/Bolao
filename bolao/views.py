@@ -7,8 +7,10 @@ from .models import Partida, Apostas, Rodada
 @login_required
 def dashboard(request):
     partidas = Partida.objects.filter(partidaRealizada=False)
-    idRodada = partidas[0].rodada.id
-    rodada = Rodada.objects.get(id=idRodada)
+    try:
+        rodada = Rodada.objects.get(permitirApostas=True)
+    except Rodada.DoesNotExist:
+        rodada = "Sem partidas para apostar por enquanto!"
     return render(request, 'bolao/dashboard.html', {'partidas': partidas, 'rodada': rodada})
 
 @login_required

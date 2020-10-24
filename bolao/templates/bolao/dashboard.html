@@ -18,11 +18,17 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'ranking' %}">Ranking</a>
                 </li>
+                {% if user.is_superuser %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin">Admin</a>
+                  </li>
+                {% endif %}
                 {% if user.is_authenticated %}
                   <li class="nav-item">
                     <a class="nav-link" href="/accounts/logout">Sair</a>
                   </li>
                 {% endif %}
+                
               </ul>
         </nav>
         
@@ -50,12 +56,13 @@
                   <div class="container">
                     <div class="row">
                         <div class="partidas-content">
-                          <h4>Próximas Partidas, {{ rodada }}</h4>
+                          <h4>Próximas Partidas: {{ rodada }}</h4>
                           <div class="tabela-partida">
                             <table>
                               <tbody>
                                 {% for partida in partidas %}
-                                  <tr class="tr-partidas">
+                                  {% if user.profile.apostou %}
+                                    <tr class="tr-partidas">
                                       <td class="time-casa">
                                           <img src="{{ partida.iconTimeCasa }}" alt="{{ partida.timeCasa }}" width=”50” height=”50”/>
                                           <h6>{{ partida.timeCasa }}</h6>
@@ -66,7 +73,7 @@
                                           <div class="data-partida">
                                             <input type="hidden" id="{{ partida.pk }}"/>
                                             <a href="{% url 'aposta' pk=partida.pk %}">
-                                              <button type="button" class="btn btn-success">
+                                              <button type="button" class="btn btn-danger" disabled>
                                                 Apostar
                                               </button>
                                             </a>
@@ -76,7 +83,31 @@
                                           <img src="{{ partida.iconTimeVisitante }}" alt="{{ partida.timeVisitante }}" width=”50” height=”50”/>
                                           <h6>{{ partida.timeVisitante }}</h6>
                                       </td>
-                                  </tr>
+                                    </tr>
+                                  {% else %}
+                                    <tr class="tr-partidas">
+                                        <td class="time-casa">
+                                            <img src="{{ partida.iconTimeCasa }}" alt="{{ partida.timeCasa }}" width=”50” height=”50”/>
+                                            <h6>{{ partida.timeCasa }}</h6>
+                                        </td>
+                                        <td class="versus">
+                                            <div class="data-partida">{{ partida.dataPartida }}</div>
+                                            <h4>VS</h4>
+                                            <div class="data-partida">
+                                              <input type="hidden" id="{{ partida.pk }}"/>
+                                              <a href="{% url 'aposta' pk=partida.pk %}">
+                                                <button type="button" class="btn btn-success">
+                                                  Apostar
+                                                </button>
+                                              </a>
+                                            </div>
+                                        </td>
+                                        <td class="time-visitante">
+                                            <img src="{{ partida.iconTimeVisitante }}" alt="{{ partida.timeVisitante }}" width=”50” height=”50”/>
+                                            <h6>{{ partida.timeVisitante }}</h6>
+                                        </td>
+                                    </tr>
+                                  {% endif %}
                                 {% endfor %}
                               </tbody>
                             </table>

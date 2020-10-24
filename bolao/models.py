@@ -100,6 +100,7 @@ def save_user_profile(sender, instance, **kwargs):
 def create_resultado(sender, instance, created, **kwargs):
     partida = Partida.objects.get(id=instance.partida.id)
     partida.partidaRealizada = True
+    rodada = Rodada.objects.get(id=partida.rodada.id)
     apostas = Apostas.objects.filter(partida=instance.partida.id,aposta_placar_casa=instance.placarCasa,aposta_placar_vistante=instance.placarVisitante)
     if(apostas.count()==1):
         for aposta in apostas:
@@ -140,3 +141,9 @@ def create_resultado(sender, instance, created, **kwargs):
                 usuario.save()
     partida.premiacaoDistribuida = True
     partida.save()
+    rodada.permitirApostas = False
+    rodada.save()
+    usuarios = User.objects.all()
+    for usuario in usuarios:
+        usuario.profile.apostou = False
+        usuario.save()
